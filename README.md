@@ -32,5 +32,5 @@ A premium, high-performance Dhikr application built with **Flutter**. This app f
 # 📿ScreenShots
 
 ![App Screenshot](assets/images/image01.png)
-![App Screenshot](assets/images/image01.png)
-![App Screenshot](assets/images/image01.png)
+![App Screenshot](assets/images/image02.png)
+![App Screenshot](assets/images/image03.png)
