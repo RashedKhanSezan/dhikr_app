@@ -1,10 +1,10 @@
-# 📿 Modern Dhikr Counter
+# ✨ Modern Dhikr Counter
 
 A premium, high-performance Dhikr application built with **Flutter**. This app features a sophisticated **Glassmorphism UI**, real-time haptic feedback, and an automated session logic designed for a seamless spiritual experience.
 
 ---
 
-## ✨ Features
+##  Features
 
 * **Glassmorphism Design:** A beautiful "frosted glass" interface with dynamic background blurs that change based on the Dhikr phase.
 * **Smart Auto-Session:** Automatically transitions through the 33-count cycle:
@@ -29,7 +29,7 @@ A premium, high-performance Dhikr application built with **Flutter**. This app f
 | **vibration** | Haptic Feedback |
 
 ---
-# 📿ScreenShots
+# 🔗 ScreenShots
 
 <p align="center">
   <img src="assets/images/image01.png" width="300" title="App Preview">
