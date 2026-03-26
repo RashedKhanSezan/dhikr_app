@@ -9,7 +9,6 @@ class DhikrModel {
   final String phrase;
   final String arabicText;
   final String translation;
-
   final Color bgColor;
   final Color accentColor;
   final bool isSoundOn;

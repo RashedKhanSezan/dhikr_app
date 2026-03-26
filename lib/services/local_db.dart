@@ -34,7 +34,7 @@ class LocalDb {
       isVibrationOn INTEGER
     )
     ''');
-   
+
     await db.insert('dhikr', {
       'id': 1,
       'count': 0,
@@ -68,7 +68,9 @@ class LocalDb {
   Future<Map<String, dynamic>?> getDhikr() async {
     final db = await instance.database;
     final maps = await db.query('dhikr', where: 'id = ?', whereArgs: [1]);
-    if (maps.isNotEmpty) return maps.first;
+    if (maps.isNotEmpty) {
+      return maps.first;
+    }
     return null;
   }
 }

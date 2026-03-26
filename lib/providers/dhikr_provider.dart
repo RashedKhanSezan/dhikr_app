@@ -55,7 +55,9 @@ class DhikrNotifier extends StateNotifier<DhikrModel> {
       accentColor: const Color.fromARGB(164, 100, 255, 219),
     );
     _saveToDb();
-    if (state.isVibrationOn) Vibration.vibrate(duration: 100);
+    if (state.isVibrationOn) {
+      Vibration.vibrate(duration: 100);
+    }
   }
 
   void setPhase(String phrase) {
@@ -94,9 +96,39 @@ class DhikrNotifier extends StateNotifier<DhikrModel> {
   }
 
   void decrement() {
-    if (state.count <= 0) return;
-    state = _copy(count: state.count - 1);
+    final bool isSub = state.phrase == "SubhanAllah";
+    final bool isAlh = state.phrase == "Alhamdulillah";
+    final bool isAkb = state.phrase == "Allahu Akbar";
+
+    if (state.count <= 0 &&
+        ((isSub && state.totalSubhanAllah <= 0) ||
+            (isAlh && state.totalAlhamdulillah <= 0) ||
+            (isAkb && state.totalAllahuAkbar <= 0))) {
+      return;
+    }
+
+    int tSub = isSub
+        ? (state.totalSubhanAllah > 0 ? state.totalSubhanAllah - 1 : 0)
+        : state.totalSubhanAllah;
+    int tAlh = isAlh
+        ? (state.totalAlhamdulillah > 0 ? state.totalAlhamdulillah - 1 : 0)
+        : state.totalAlhamdulillah;
+    int tAkb = isAkb
+        ? (state.totalAllahuAkbar > 0 ? state.totalAllahuAkbar - 1 : 0)
+        : state.totalAllahuAkbar;
+
+    state = _copy(
+      count: state.count > 0 ? state.count - 1 : 0,
+      totalSubhanAllah: tSub,
+      totalAlhamdulillah: tAlh,
+      totalAllahuAkbar: tAkb,
+    );
+
     _saveToDb();
+
+    if (state.isVibrationOn) {
+      Vibration.vibrate(duration: 25);
+    }
   }
 
   void increment(BuildContext context) async {
@@ -121,7 +153,9 @@ class DhikrNotifier extends StateNotifier<DhikrModel> {
           totalAllahuAkbar: tAkb,
         );
 
-        if (state.isVibrationOn) Vibration.vibrate(duration: 150);
+        if (state.isVibrationOn) {
+          Vibration.vibrate(duration: 150);
+        }
         await Future.delayed(const Duration(milliseconds: 150));
 
         if (state.phrase == "Allahu Akbar") {
@@ -132,7 +166,9 @@ class DhikrNotifier extends StateNotifier<DhikrModel> {
           _autoTransition(tSub, tAlh, tAkb);
         }
       } else {
-        if (state.isVibrationOn) Vibration.vibrate(duration: 40);
+        if (state.isVibrationOn) {
+          Vibration.vibrate(duration: 40);
+        }
         state = _copy(
           count: nextCount,
           totalSubhanAllah: tSub,
@@ -141,7 +177,9 @@ class DhikrNotifier extends StateNotifier<DhikrModel> {
         );
       }
     } else {
-      if (state.isVibrationOn) Vibration.vibrate(duration: 40);
+      if (state.isVibrationOn) {
+        Vibration.vibrate(duration: 40);
+      }
       state = _copy(
         count: nextCount,
         totalSubhanAllah: tSub,

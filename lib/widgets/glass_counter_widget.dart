@@ -46,9 +46,7 @@ class GlassCounter extends StatelessWidget {
               color: Colors.white.withOpacity(0.08),
               child: InkWell(
                 onTap: onTap,
-                splashColor: accentColor.withOpacity(
-                  0.2,
-                ), 
+                splashColor: accentColor.withOpacity(0.2),
                 highlightColor: accentColor.withOpacity(0.1),
                 child: Container(
                   height: 300,
